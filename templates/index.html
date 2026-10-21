@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ titulo }}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; }
+    li { margin: .3rem 0; }
+  </style>
+</head>
+<body>
+  <h1>{{ titulo }}</h1>
+  <form method="post" action="/notas">
+    <input name="texto" placeholder="Escribe una nota" required>
+    <button>Añadir</button>
+  </form>
+  <ul>
+    {% for nota in notas %}<li>{{ nota }}</li>{% endfor %}
+  </ul>
+</body>
+</html>

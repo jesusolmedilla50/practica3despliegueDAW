@@ -1,0 +1,6 @@
+Esta carpeta contiene la contenerización que entregó un compañero con prisas.
+NO la copies a la raíz del proyecto: se audita tal cual (ejercicio 5).
+
+Para construir su imagen y medirla, desde la raíz del proyecto:
+
+    docker build -f sin-revisar/Dockerfile -t notas-malo .
