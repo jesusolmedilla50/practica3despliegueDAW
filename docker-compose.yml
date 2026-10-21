@@ -1,0 +1,44 @@
+# Contenerizacion de la aplicacion "Tablon de notas".
+# Las variables de entorno de la aplicacion viven aqui, nunca en la imagen.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: notas-web:latest
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_URL: redis://cache:6379
+      TITULO_APP: "Tablón de notas"
+    depends_on:
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cache:
+    image: redis:7.4-alpine
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --save
+      - "60"
+      - "1"
+    volumes:
+      - redis-data:/data
+    # Sin "ports": Redis no se publica al exterior. Solo es alcanzable desde la
+    # red interna de Compose por el nombre de servicio "cache".
+    expose:
+      - "6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+    name: notas-redis-data
