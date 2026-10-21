@@ -1,0 +1,35 @@
+# Versionado y metadatos
+.git
+.gitignore
+.gitattributes
+.github
+.opencode
+
+# Secretos y entorno
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Documentacion y material de la practica
+*.md
+docs/
+
+# Material de la auditoria: no forma parte de la aplicacion
+sin-revisar/
+
+# Editores y sistema operativo
+.idea/
+.vscode/
+.DS_Store
